@@ -36,10 +36,12 @@ Bienvenue sur mon portfolio de cybersécurité offensive. Ce dépôt regroupe me
 
 ## 🔗 Liens utiles
 
-- [Cheat Sheets Pentest](https://github.com/ton-user/cheat-sheets-pentest)
+- [Cheat Sheets Pentest](https://github.com/chaymaLS/Cybersecurity-offensive/tree/cheat-sheets-pentest)
 - [Mon LinkedIn](https://www.linkedin.com/in/chayma-saaoud-7ba4a4150)
 
 
+
+# ENGLISH Version
 # 🛡️ Pentest Portfolio
 
 Welcome to my offensive cybersecurity portfolio. This repository gathers technical projects, custom tools, lab writeups, and vulnerability reports. It is designed to showcase my practical skills as a junior penetration tester.
