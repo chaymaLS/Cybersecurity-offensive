@@ -1,0 +1,56 @@
+Setting						Description
+browseable = yes			Allow listing available shares in the current share?
+read only = no				Forbid the creation and modification of files?
+writable = yes				Allow users to create and modify files?
+guest ok = yes				Allow connecting to the service without using a password?
+enable privileges = yes		Honor privileges assigned to specific SID?
+create mask = 0777			What permissions must be assigned to the newly created files?
+directory mask = 0777		What permissions must be assigned to the newly created directories?
+logon script = script.sh	What script needs to be executed on the user's login?
+magic script = script.sh	Which script should be executed when the script gets closed?
+magic output = script.out	Where the output of the magic script needs to be stored?
+
+cat /etc/samba/smb.conf | grep -v "#\|\;" 
+
+Enumerate :
+smbclient -N -L //10.129.14.128
+
+Sailor12@htb[/htb]$ smbclient //10.129.14.128/notes
+
+smbclient //10.129.93.115/devshare -U alex%'lol123!mD'
+
+sudo nmap 10.129.14.128 -sV -sC -p139,445
+
+rpcclient -U "" 10.129.14.128
+
+Query						Description
+srvinfo						Server information.
+enumdomains					Enumerate all domains that are deployed in the network.
+querydominfo				Provides domain, server, and user information of deployed domains.
+netshareenumall				Enumerates all available shares.
+netsharegetinfo <share>		Provides information about a specific share.
+enumdomusers				Enumerates all domain users.
+queryuser <RID>				Provides information about a specific user.
+
+it can also happen that not all commands are available to us.
+
+samrdump.py 10.129.14.128
+
+smbmap -H 10.129.14.128
+ou
+smbmap -u alex -p 'password' -H 10.129.14.128
+
+Sailor12@htb[/htb]$ crackmapexec smb 10.129.14.128 --shares -u '' -p ''
+
+SMB         10.129.14.128   445    DEVSMB           [*] Windows 6.1 Build 0 (name:DEVSMB) (domain:) (signing:False) (SMBv1:False)
+SMB         10.129.14.128   445    DEVSMB           [+] \: 
+SMB         10.129.14.128   445    DEVSMB           [+] Enumerated shares
+SMB         10.129.14.128   445    DEVSMB           Share           Permissions     Remark
+SMB         10.129.14.128   445    DEVSMB           -----           -----------     ------
+SMB         10.129.14.128   445    DEVSMB           print$                          Printer Drivers
+SMB         10.129.14.128   445    DEVSMB           home                            INFREIGHT Samba
+SMB         10.129.14.128   445    DEVSMB           dev                             DEVenv
+SMB         10.129.14.128   445    DEVSMB           notes           READ,WRITE      CheckIT
+SMB         10.129.14.128   445    DEVSMB           IPC$                            IPC Service (DEVSM)
+
+./enum4linux-ng.py 10.129.14.128 -A

@@ -1,0 +1,39 @@
+cat /etc/exports
+
+Dangerous settings
+
+Option			Description
+rw				Read and write permissions.
+insecure		Ports above 1024 will be used.
+nohide			If another file system was mounted below an exported directory, this directory is exported by its own exports entry.
+no_root_squash	All files created by root are kept with the UID/GID 0.
+
+sudo nmap 10.129.14.128 -p111,2049 -sV -sC
+
+sudo nmap --script nfs* 10.129.14.128 -sV -p111,2049
+sudo nmap --script nfs* 10.129.14.128 -sV -p111,2049
+
+
+# Show Available NFS Shares
+showmount -e 10.129.14.128
+
+# Mounting NFS Share
+sailor12@htb[/htb]$ mkdir target-NFS
+Sailor12@htb[/htb]$ sudo mount -t nfs 10.129.14.128:/ ./target-NFS/ -o nolock
+Sailor12@htb[/htb]$ cd target-NFS
+Sailor12@htb[/htb]$ tree .
+
+.
+└── mnt
+    └── nfs
+        ├── id_rsa
+        ├── id_rsa.pub
+        └── nfs.share
+		
+# List Contents with Usernames & Group Names
+Sailor12@htb[/htb]$ ls -l mnt/nfs/
+
+# List Contents with UIDs & GUIDs
+Sailor12@htb[/htb]$ ls -n mnt/nfs/
+
+Sailor12@htb[/htb]$ sudo umount ./target-NFS
